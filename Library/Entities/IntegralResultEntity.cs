@@ -25,7 +25,7 @@ namespace Library.Entities
         public DateTime MinDate { get; set; }
 
         /// <summary>
-        /// Среднее время выполнения операций (или измерений) для данного файла.
+        /// Среднее время выполнения операций для данного файла.
         /// </summary>
         public double AverageExecutionTime { get; set; }
 
