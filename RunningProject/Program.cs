@@ -27,7 +27,7 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Test Task API V1"));
 }
 
-// Список путей к CSV файлам
+// РџСѓС‚Рё Рє CSV С„Р°Р№Р»Р°Рј
 List<string> csvFilePaths =
 [
     @".\CSVs\10001rows.csv",
@@ -40,7 +40,7 @@ List<string> csvFilePaths =
     @".\CSVs\empty_file.csv"
 ];
 
-//1. Пример использования SaveDataFromCsvToDbAsync
+//1. РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ SaveDataFromCsvToDbAsync
 foreach (string csvFilePath in csvFilePaths)
 {
     using WebApiDbContext dbContext = new WebApiDbContext(dbContextOption);
@@ -52,17 +52,17 @@ foreach (string csvFilePath in csvFilePaths)
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Не удалось обработать {csvFileName}: {ex.Message}");
+        Console.WriteLine($"ГЌГҐ ГіГ¤Г Г«Г®Г±Гј Г®ГЎГ°Г ГЎГ®ГІГ ГІГј {csvFileName}: {ex.Message}");
     }
 }
 
-// 2. Пример использования GetFilteredResultsAsync (с фильтрацией)
+// 2. РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ GetFilteredResultsAsync (СЃ С„РёР»СЊС‚СЂР°С†РёРµР№)
 using (var dbContext = new WebApiDbContext(dbContextOption))
 {
     try
     {
         var filteredResults = await dbContext.GetFilteredResultsAsync(fileName: "7000rows.csv");
-        Console.WriteLine($"Найдено {filteredResults.Count} отфильтрованных результатов.");
+        Console.WriteLine($"ГЌГ Г©Г¤ГҐГ­Г® {filteredResults.Count} Г®ГІГґГЁГ«ГјГІГ°Г®ГўГ Г­Г­Г»Гµ Г°ГҐГ§ГіГ«ГјГІГ ГІГ®Гў.");
         foreach (var result in filteredResults)
         {
             Console.WriteLine($"  FileName: {result.FileName}, AverageValue: {result.AverageValue}");
@@ -70,17 +70,17 @@ using (var dbContext = new WebApiDbContext(dbContextOption))
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Ошибка при получении отфильтрованных результатов: {ex.Message}");
+        Console.WriteLine($"ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ ГЇГ®Г«ГіГ·ГҐГ­ГЁГЁ Г®ГІГґГЁГ«ГјГІГ°Г®ГўГ Г­Г­Г»Гµ Г°ГҐГ§ГіГ«ГјГІГ ГІГ®Гў: {ex.Message}");
     }
 }
 
-// 3. Пример использования GetLastTenResultsByFileNameAsync
+// 3. РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ GetLastTenResultsByFileNameAsync
 using (var dbContext = new WebApiDbContext(dbContextOption))
 {
     try
     {
         var latestResults = await dbContext.GetLastTenResultsByFileNameAsync("7000rows.csv");
-        Console.WriteLine($"Найдено {latestResults.Count} последних результатов для 5000rows.csv.");
+        Console.WriteLine($"ГЌГ Г©Г¤ГҐГ­Г® {latestResults.Count} ГЇГ®Г±Г«ГҐГ¤Г­ГЁГµ Г°ГҐГ§ГіГ«ГјГІГ ГІГ®Гў Г¤Г«Гї 5000rows.csv.");
         foreach (var result in latestResults)
         {
             Console.WriteLine($"  FileName: {result.FileName}, MinDate: {result.Date}");
@@ -88,7 +88,7 @@ using (var dbContext = new WebApiDbContext(dbContextOption))
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Ошибка при получении последних результатов: {ex.Message}");
+        Console.WriteLine($"ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ ГЇГ®Г«ГіГ·ГҐГ­ГЁГЁ ГЇГ®Г±Г«ГҐГ¤Г­ГЁГµ Г°ГҐГ§ГіГ«ГјГІГ ГІГ®Гў: {ex.Message}");
     }
 }
 
