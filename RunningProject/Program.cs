@@ -52,7 +52,7 @@ foreach (string csvFilePath in csvFilePaths)
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Íå óäàëîñü îáðàáîòàòü {csvFileName}: {ex.Message}");
+        Console.WriteLine($"Не удалось обработать {csvFileName}: {ex.Message}");
     }
 }
 
@@ -62,7 +62,7 @@ using (var dbContext = new WebApiDbContext(dbContextOption))
     try
     {
         var filteredResults = await dbContext.GetFilteredResultsAsync(fileName: "7000rows.csv");
-        Console.WriteLine($"Íàéäåíî {filteredResults.Count} îòôèëüòðîâàííûõ ðåçóëüòàòîâ.");
+        Console.WriteLine($"Найдено {filteredResults.Count} отфильтрованных результатов.");
         foreach (var result in filteredResults)
         {
             Console.WriteLine($"  FileName: {result.FileName}, AverageValue: {result.AverageValue}");
@@ -70,7 +70,7 @@ using (var dbContext = new WebApiDbContext(dbContextOption))
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Îøèáêà ïðè ïîëó÷åíèè îòôèëüòðîâàííûõ ðåçóëüòàòîâ: {ex.Message}");
+        Console.WriteLine($"Ошибка при получении отфильтрованных результатов: {ex.Message}");
     }
 }
 
@@ -80,7 +80,7 @@ using (var dbContext = new WebApiDbContext(dbContextOption))
     try
     {
         var latestResults = await dbContext.GetLastTenResultsByFileNameAsync("7000rows.csv");
-        Console.WriteLine($"Íàéäåíî {latestResults.Count} ïîñëåäíèõ ðåçóëüòàòîâ äëÿ 5000rows.csv.");
+        Console.WriteLine($"Найдено {latestResults.Count} последних результатов для 5000rows.csv.");
         foreach (var result in latestResults)
         {
             Console.WriteLine($"  FileName: {result.FileName}, MinDate: {result.Date}");
@@ -88,7 +88,7 @@ using (var dbContext = new WebApiDbContext(dbContextOption))
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Îøèáêà ïðè ïîëó÷åíèè ïîñëåäíèõ ðåçóëüòàòîâ: {ex.Message}");
+        Console.WriteLine($"Ошибка при получении последних результатов: {ex.Message}");
     }
 }
 
